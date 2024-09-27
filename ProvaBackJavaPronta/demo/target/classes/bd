@@ -1,0 +1,26 @@
+create table "produtos" (
+	"id" serial primary key,
+	"nome" text not null
+	
+);
+
+select * from produtos;
+
+create table "fornecedor" (
+	"id" serial primary key,
+	"nome" text not null,
+	"telefone" text not null,
+	"id_produto" integer unique references produtos(id)
+);
+ALTER TABLE fornecedor RENAME TO fornecedores;
+
+
+select * from fornecedores;
+
+create table "categorias" (
+	"id" serial primary key,
+	"nome" text not null,
+	"id_produto" integer references produtos(id)
+);
+
+select * from categorias;
