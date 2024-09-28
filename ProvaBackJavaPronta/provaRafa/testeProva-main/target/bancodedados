@@ -1,0 +1,23 @@
+create table "tarefas" (
+    "id" serial primary key,
+    "titulo" text not null
+);
+
+create table "responsaveis" (
+    "id" serial primary key,
+    "nome" text not null,
+    "email" text not null,
+    "id_tarefa" integer unique references tarefas(id) -- 1:1 entre tarefa e responsável
+);
+
+create table "usuarios" (
+    "id" serial primary key,
+    "nome" text not null,
+    "email" text not null,
+    "id_tarefa" integer references tarefas(id) -- 1:N entre tarefa e usuários
+);
+
+-- Queries para testar
+select * from tarefas;
+select * from responsaveis;
+select * from usuarios;
