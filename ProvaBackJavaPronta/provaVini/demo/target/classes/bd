@@ -1,0 +1,30 @@
+-- Tabela de Pedidos
+CREATE TABLE "pedidos" (
+    "id" serial PRIMARY KEY,
+    "produto" text NOT NULL,
+    "quantidade" int NOT NULL
+);
+
+-- Tabela de Endereços (1:1 com Pedidos)
+CREATE TABLE "enderecoss" (
+    "id" serial PRIMARY KEY,
+    "rua" text NOT NULL,
+    "numero" text NOT NULL,
+    "cidade" text NOT NULL,
+    "id_pedido" integer UNIQUE REFERENCES pedidos(id) ON DELETE CASCADE
+);
+
+-- Tabela de Clientes (Muitos para um Pedido)
+CREATE TABLE "clientes" (
+    "id" serial PRIMARY KEY,
+    "nome" text NOT NULL,
+    "id_pedido" integer REFERENCES pedidos(id) ON DELETE CASCADE
+);
+
+
+
+
+
+select*from pedidos;
+select*from enderecoss;
+select*from clientes;
