@@ -1,0 +1,24 @@
+
+
+-- Tabela de Consultórios
+CREATE TABLE "consultorios" (
+    "id" serial PRIMARY KEY,
+    "nome" text NOT NULL
+);
+
+-- Tabela de Endereços (1:1 com Consultórios)
+CREATE TABLE "enderecos" (
+    "id" serial PRIMARY KEY,
+    "rua" text NOT NULL,
+    "numero" text NOT NULL,
+    "cidade" text NOT NULL,
+    "id_consultorio" integer UNIQUE REFERENCES consultorios(id) ON DELETE CASCADE
+);
+
+-- Tabela de Pacientes (Muitos para um Consultório)
+CREATE TABLE "pacientes" (
+    "id" serial PRIMARY KEY,
+    "nome" text NOT NULL,
+    "idade" integer NOT NULL,
+    "id_consultorio" integer REFERENCES consultorios(id) ON DELETE CASCADE
+);
