@@ -1,0 +1,18 @@
+create table "bibliotecas" (
+	"id" serial primary key,
+	"nome" text not null
+);
+
+
+create table "livros" (
+	"id" serial primary key,
+	"titulo" text not null,
+	"id_biblioteca" integer references bibliotecas(id)
+);
+
+create table "autores" (
+	"id" serial primary key,
+	"nome" text not null,
+	"nacionalidade" text not null,
+	"id_livro" integer unique references livros(id)
+);
